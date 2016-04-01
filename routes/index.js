@@ -45,12 +45,14 @@ router.get('/timer', function(req, res, next) {
   res.render('timer');
 });
 
+
 router.post('/time/add',authorizedUser, function(req, res, next) {
   knex('times')
   .insert({'solve_time': req.body.time})
   .then(function(response){
     res.redirect('/');
   })
+
 });
 
 router.get('/user',function(req,res,next) {
