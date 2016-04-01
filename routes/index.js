@@ -32,7 +32,7 @@ router.get('/times',authorizedUser, function(req, res, next) {
   res.render('leaderBoard');
 });
 
-router.get('/timer',authorizedUser, function(req, res, next) {
+router.get('/timer', function(req, res, next) {
   res.render('timer');
 });
 

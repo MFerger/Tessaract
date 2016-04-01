@@ -1,7 +1,13 @@
-<div id='playButton'>
-  <br>
-  <div id='time'>
-    <p id="seconds">0s</p>
-    <p id="mili">00ms</p>
-  </div>
+<br>
+<h1 id='displayedTime'>00:00:00</h1>
+<button id="startButton" >Start</button>
+<button id="stopButton">Stop</button>
+<button id="clearButton">Clear</button>
+<br><br>
+<form method='POST' action="/time/add">
+<input type="submit" id='submit' name='input' value='Submit'></input>
+</form>
+<div id='scores'>
+<p id='newScores'></p>
 </div>
+<script src="/javascripts/timer.js"></script>
