@@ -1,8 +1,10 @@
+require('dotenv').load();
+
 module.exports = {
 
-  development: {
+  production: {
     client: 'postgresql',
-    connection: 'postgresql://localhost/tessaract',
+    connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
       max: 10
