@@ -1,2 +1,15 @@
 body {
-  background-color: blue; }
+  background-color: white; }
+
+nav {
+  background-color: black;
+  height: 100px; }
+
+nav {
+  color: #18cfff; }
+
+ul {
+  float: right; }
+
+li {
+  display: inline; }
