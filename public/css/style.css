@@ -1,53 +1,100 @@
 body {
-  background-color: #c2c6bf; }
+  background-color: #06ecfb;
+  background: url(/images/bg.jpg) center no-repeat;
+  background-position: 0 150px; }
+
+.info {
+  color: white;
+  text-align: center; }
+  .info a {
+    color: #00acf2;
+    text-decoration: none; }
 
 nav {
+  text-align: center;
   background-color: black;
-  height: 125px;
+  height: 150px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #ede7e7, 0 10px 1px -4px rgba(0, 0, 0, 0.15); }
+  nav ul {
+    padding: 0; }
   nav h1 {
-    margin: 10px;
-    float: left; }
+    margin: 0;
+    padding-top: 20px; }
 
-.navigation {
-  float: right;
-  margin-top: 65px; }
+.text-input {
+  width: 450px;
+  height: 30px;
+  margin-top: 10px; }
 
 .content {
-  clear: both;
-  float: none;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
   height: auto;
   width: 900px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
-  padding: 50px; }
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 30px; }
+
+.form-wrapper {
+  background-color: #202121;
+  border-radius: 10px;
+  padding: 30px;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto; }
 
 nav {
-  color: #18cfff; }
+  color: #06ecfb; }
   nav h1 {
     font-size: 5em;
-    font-family: 'Alegreya', serif; }
+    color: #00acf2;
+    font-family: 'Orbitron', sans-serif; }
 
 h1 {
-  font-family: 'Alegreya', serif;
-  color: #18cfff; }
+  font-family: 'Orbitron', sans-serif;
+  color: #00acf2; }
 
 li {
   font-size: 1.4em;
-  font-family: 'Alegreya', serif;
+  font-family: 'Orbitron', sans-serif;
   display: inline-block;
   text-align: center;
   margin-left: 10px;
-  margin-right: 20px; }
+  margin-right: 10px; }
   li a {
-    color: #18cfff;
+    color: #00acf2;
     text-decoration: none; }
     li a:hover {
-      background-color: white; }
+      background-color: rgba(255, 255, 255, 0.4); }
 
 .page-title {
+  color: #00acf2;
   text-align: center;
   display: block;
   font-size: 4em; }
+
+.timer {
+  border: 1px solid black;
+  background-color: black;
+  padding: 15px;
+  font-size: 4.5em;
+  text-align: center;
+  color: white;
+  border: 5px solid #ede7e7; }
+
+label {
+  color: white; }
+
+button {
+  background-color: black;
+  border: none;
+  color: #00acf2;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px; }
