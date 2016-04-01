@@ -2,13 +2,14 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+var knex = require('knex')(require('../knexfile')['production']);
 
 router.post('/signup', function(req,res,next){
   // validate that the form was filled out
    var errorArray = [];
 
    if(!req.body.username) {
-     errorArray.push('Please enter a email');
+     errorArray.push('Please enter a username');
    }
    if(!req.body.password) {
      errorArray.push('Please enter a password');
@@ -19,7 +20,7 @@ router.post('/signup', function(req,res,next){
    else{
   var hash = bcrypt.hashSync(req.body.password, 8);
   knex('users')
-  .insert({'email': req.body.username, 'password': hash})
+  .insert({'username': req.body.username, 'password': hash})
   .then(function(response){
     res.redirect('/');
   })
@@ -29,14 +30,14 @@ router.post('/signup', function(req,res,next){
 
 router.post('/login', function(req,res,next){
   knex('users')
-  .where('email', '=', req.body.email)
+  .where('username', '=', req.body.username)
   .first()
   .then(function(response){
     if(response && bcrypt.compareSync(req.body.password, response.password)){
-      req.session.user = response.email;
-      res.redirect('/somewhere');
+      req.session.user = response.username;
+      res.redirect('/');
     } else {
-      res.render('current', {error: 'Invalid email or password'});
+      res.render('login', {error: 'Invalid username or password'});
     }
   });
 });

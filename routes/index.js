@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var knex = require('knex')(require('../knexfile')['production']);
 
 function authorizedUser(req, res, next) {
+  console.log(req.session);
+
   if (req.session.user) {
     next();
   } else {
@@ -13,7 +16,15 @@ function authorizedUser(req, res, next) {
 
 
 router.get('/', function(req, res, next) {
-  res.render('index');
+  // if (req.session.user) {
+  //   next(); // Logged In Page
+  // } else {
+  //   res.redirect('/'); //Not Logged In
+  // }
+  knex('users').where('username',req.session.user).first().then(function(records){
+    console.log(records);
+    res.render('index', { users: records });
+  });
 });
 
 router.get('/login', function(req, res, next) {
@@ -24,12 +35,10 @@ router.get('/signup', function(req, res, next) {
   res.render('signUp');
 });
 
-router.get('/logout',authorizedUser, function(req, res, next) {
-  res.render('logOut');
-});
-
 router.get('/times',authorizedUser, function(req, res, next) {
-  res.render('leaderBoard');
+  // knex('times').top('solve_time').limit(5).then(function(records){
+  //   res.render('leaderBoard', { scores: records });
+  res.render('index');
 });
 
 router.get('/timer', function(req, res, next) {
@@ -40,8 +49,14 @@ router.post('/update',authorizedUser, function(req, res, next) {
 
 });
 
+router.get('/user',function(req,res,next) {
+  res.redirect('/login');
+});
+
 router.get('/user/:id',authorizedUser, function(req, res, next) {
-  res.render('userDetail');
+  knex('users').where('id', req.params.id).then(function(records){
+    res.render('userDetail', { users: records });
+  });
 });
 
 router.post('/user/delete',authorizedUser, function(req, res, next) {
