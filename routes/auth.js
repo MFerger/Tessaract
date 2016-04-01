@@ -2,51 +2,49 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
-const bcrypt = require('bcrypt');
-const flash = require('flash');
-const Users = function() { return knex('users') };
+const bcrypt = require('bcryptjs');
 
-router.post('/signup', function(req, res, next) {
-    Users().where({
-        email: req.body.email
-    }).first().then(function(user) {
-        if (!user) {
-            let hash = bcrypt.hashSync(req.body.password, 10);
-            Users().insert({
-                email: req.body.email,
-                password: hash
-            }).then(function(){
-              req.flash('info', 'Thanks for signing up.');
-              res.redirect('/');
-            });
-        } else {
-            req.flash('error', 'You already have an account with us.');
-            res.redirect('/users/login');
-        }
-    });
-});
+router.post('/signup', function(req,res,next){
+  // validate that the form was filled out
+   var errorArray = [];
 
-router.post('/login', function(req, res, next) {
-    Users().where({
-        email: req.body.email,
-    }).first().then(function(user) {
-        if ( user && bcrypt.compareSync(req.body.password, user.password) ) {
-            res.cookie('userID', user.id, {
-                signed: true
-            });
-            req.flash('info', 'Welcome back!');
-            res.redirect('/');
-        } else {
-            req.flash('error', 'Invalid email or password.');
-            res.redirect('/users/login');
-        }
-    });
-});
-
-router.get('/logout', function(req, res) {
-    res.clearCookie('userID');
-    req.flash('info', 'Goodbye!');
+   if(!req.body.username) {
+     errorArray.push('Please enter a email');
+   }
+   if(!req.body.password) {
+     errorArray.push('Please enter a password');
+   }
+   if(errorArray.length > 0) {
+     res.render('signUp', {errors: errorArray});
+   }
+   else{
+  var hash = bcrypt.hashSync(req.body.password, 8);
+  knex('users')
+  .insert({'email': req.body.username, 'password': hash})
+  .then(function(response){
     res.redirect('/');
+  })
+}
+
+});
+
+router.post('/login', function(req,res,next){
+  knex('users')
+  .where('email', '=', req.body.email)
+  .first()
+  .then(function(response){
+    if(response && bcrypt.compareSync(req.body.password, response.password)){
+      req.session.user = response.email;
+      res.redirect('/somewhere');
+    } else {
+      res.render('current', {error: 'Invalid email or password'});
+    }
+  });
+});
+
+router.get('/logout', function(req,res,next){
+  req.session.user = null;
+  res.redirect('/');
 });
 
 module.exports = router;
