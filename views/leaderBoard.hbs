@@ -1,0 +1,15 @@
+<h1>High Scores</h1>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Solve Time</th>
+    <th>Date</th>
+  </tr>
+
+{{#scores}}
+<tr>
+    <td>{{user_id}}</td>
+    <td>{{solve_time}}</td>
+    <td>{{timestamp}}</td>
+</tr>
+{{/each}}
