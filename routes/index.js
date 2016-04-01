@@ -12,35 +12,40 @@ function authorizedUser(req, res, next) {
 /* GET home page. */
 
 
+router.get('/', function(req, res, next) {
+  res.render('index');
+});
+
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express' });
+  res.render('login');
 });
 
 router.get('/signup', function(req, res, next) {
-  res.render('signUp', { title: 'Express' });
+  res.render('signUp');
 });
 
 router.get('/logout',authorizedUser, function(req, res, next) {
-  res.render('logOut', { title: 'Express' });
+  res.render('logOut');
 });
 
 router.get('/times',authorizedUser, function(req, res, next) {
-  res.render('leaderBoard', { title: 'Express' });
+  res.render('leaderBoard');
 });
 
 router.get('/timer',authorizedUser, function(req, res, next) {
-  res.render('timer', { title: 'Express' });
+  res.render('timer');
 });
 
 router.post('/update',authorizedUser, function(req, res, next) {
-  knex('users').
+
+});
 
 router.get('/user/:id',authorizedUser, function(req, res, next) {
-  res.render('userDetail', { title: 'Express' });
+  res.render('userDetail');
 });
 
 router.post('/user/delete',authorizedUser, function(req, res, next) {
-  res.render('userDetail', { title: 'Express' });
+  res.render('userDetail');
 });
 
 module.exports = router;
