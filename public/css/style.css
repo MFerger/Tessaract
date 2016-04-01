@@ -5,10 +5,9 @@ nav {
   background-color: black;
   height: 125px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #ede7e7, 0 10px 1px -4px rgba(0, 0, 0, 0.15); }
-
-h1 {
-  margin: 10px;
-  float: left; }
+  nav h1 {
+    margin: 10px;
+    float: left; }
 
 .navigation {
   float: right;
@@ -16,18 +15,24 @@ h1 {
 
 .content {
   clear: both;
+  float: none;
   background-color: white;
   height: auto;
   width: 900px;
   margin-top: 50px;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  padding: 50px; }
 
 nav {
   color: #18cfff; }
   nav h1 {
     font-size: 5em;
     font-family: 'Alegreya', serif; }
+
+h1 {
+  font-family: 'Alegreya', serif;
+  color: #18cfff; }
 
 li {
   font-size: 1.4em;
@@ -41,3 +46,8 @@ li {
     text-decoration: none; }
     li a:hover {
       background-color: white; }
+
+.page-title {
+  text-align: center;
+  display: block;
+  font-size: 4em; }
