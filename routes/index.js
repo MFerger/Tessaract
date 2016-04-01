@@ -45,8 +45,9 @@ router.get('/timer', function(req, res, next) {
   res.render('timer');
 });
 
-router.post('/update',authorizedUser, function(req, res, next) {
-
+router.post('/time/add', function(req, res, next) {
+  console.log(req.body.time);
+  res.end();
 });
 
 router.get('/user',function(req,res,next) {
