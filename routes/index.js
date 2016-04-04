@@ -37,6 +37,7 @@ router.get('/signup', function(req, res, next) {
 
 router.get('/times',authorizedUser, function(req, res, next) {
   knex('times').limit(5).orderBy('solve_time').then(function(records){
+    console.log(records, "sssssssssssssssssssssssss");
     res.render('leaderBoard', { scores: records });
   });
 });
