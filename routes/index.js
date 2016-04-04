@@ -47,6 +47,7 @@ router.get('/timer', function(req, res, next) {
 
 
 router.post('/time/add',authorizedUser, function(req, res, next) {
+  console.log("GOT TO POST /TIME/ADD SUCCESFULLY");
   console.log(req.body.time, "ssssssssssssssssss");
   console.log(req.session.user, "qqqqqqqqqqqqqqqqq");
   knex('times')
