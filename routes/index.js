@@ -37,7 +37,6 @@ router.get('/signup', function(req, res, next) {
 
 router.get('/times',authorizedUser, function(req, res, next) {
   knex('times').limit(5).orderBy('solve_time').then(function(records){
-    console.log(records, "sssssssssssssssssssssssss");
     res.render('leaderBoard', { scores: records });
   });
 });
@@ -48,7 +47,8 @@ router.get('/timer', function(req, res, next) {
 
 
 router.post('/time/add',authorizedUser, function(req, res, next) {
-  console.log(req.session.id);
+  console.log(req.body.time, "ssssssssssssssssss");
+  console.log(req.session.user, "qqqqqqqqqqqqqqqqq");
   knex('times')
   .insert({'solve_time': req.body.time, 'username': req.session.user})
   .then(function(response){
