@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <title>Tesseract</title>
     <link rel='stylesheet' href='https://necolas.github.io/normalize.css/3.0.3/normalize.css'/>
     <link href='https://fonts.googleapis.com/css?family=Alegreya:400,900,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
@@ -17,9 +17,14 @@
         <li><a href='/times'>Leaderboard</a></li>
         <li><a href='/timer'>Time Cube</a></li>
         <li><a href='/user/{{users.id}}'>My Time</a></li>
+
+        {{#unless users}}
         <li><a href='/signup'>Sign Up</a></li>
         <li><a href='/login'>Login</a></li>
+        {{/unless}}
+        {{#if users}}
         <li><a href='/auth/logout'>Logout</a></li>
+        {{/if}}
       </ul>
     </nav>
   <div class='background'>
