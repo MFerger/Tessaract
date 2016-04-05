@@ -1,6 +1,7 @@
 body {
   background-color: #06ecfb;
   background: url(/images/bg.jpg) center no-repeat;
+  background-size: cover;
   background-position: 0 150px; }
 
 .info {
@@ -46,6 +47,10 @@ nav {
   width: 450px;
   margin-left: auto;
   margin-right: auto; }
+  .form-wrapper p {
+    text-align: center;
+    line-height: 2;
+    color: white; }
 
 nav {
   color: #06ecfb; }
@@ -89,7 +94,8 @@ li {
 label {
   color: white; }
 
-button {
+button, .button {
+  font-family: 'Orbitron', sans-serif;
   background-color: black;
   border: none;
   color: #00acf2;
@@ -98,3 +104,13 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px; }
+
+button {
+  width: 32%; }
+
+.button {
+  width: 100%; }
+
+.controls {
+  width: 450px;
+  text-align: center; }
