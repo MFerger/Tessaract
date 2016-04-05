@@ -8,11 +8,12 @@
 <button id="clearButton">Clear</button>
 </div>
 <br><br>
-<form method='POST' action="/time/add">
-<input class='button' type="submit" id='submit' name='input' value='Submit'></input>
+<form method='POST' action="javascript:submit();">
+<input type="submit" id='submit' name='input' value='Submit'></input>
+<p id='newScores'></p>
+
 </form>
 <div id='scores'>
-<p id='newScores'></p>
 </div>
 </div>
 <script src="/javascripts/timer.js"></script>

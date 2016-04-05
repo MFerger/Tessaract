@@ -16,6 +16,15 @@ var start = document.getElementById('startButton');
 var stop = document.getElementById('stopButton');
 var clear = document.getElementById('clearButton');
 
+function submit (){
+  var data = {time: $('#newScores').text()};
+  $.ajax({
+    type: 'POST',
+    url: '/time/add',
+    data: data
+  });
+}
+
 function count() {
     seconds++;
     if (seconds === 59) {
