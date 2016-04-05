@@ -46,7 +46,7 @@ router.get('/timer', function(req, res, next) {
 });
 
 router.post('/time/add', function(req, res, next) {
-  console.log(req.body.time);
+  console.log(4);
   res.end();
 });
 
