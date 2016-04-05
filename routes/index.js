@@ -3,7 +3,6 @@ var router = express.Router();
 var knex = require('knex')(require('../knexfile')['production']);
 
 function authorizedUser(req, res, next) {
-  console.log(req.session);
 
   if (req.session.user) {
     next();
@@ -16,11 +15,7 @@ function authorizedUser(req, res, next) {
 
 
 router.get('/', function(req, res, next) {
-  // if (req.session.user) {
-  //   next(); // Logged In Page
-  // } else {
-  //   res.redirect('/'); //Not Logged In
-  // }
+
   knex('users').where('username',req.session.user).first().then(function(records){
     console.log(records);
     res.render('index', { users: records });
@@ -43,15 +38,11 @@ router.get('/times',authorizedUser, function(req, res, next) {
 
 router.get('/timer', function(req, res, next) {
   knex('users').where('username',req.session.user).first().then(function(records){
-    console.log(records);
     res.render('timer', { users: records });
   });
 });
 
 router.post('/time/add',authorizedUser, function(req, res, next) {
-  console.log("GOT TO POST /TIME/ADD SUCCESFULLY");
-  console.log(req.body.time, "ssssssssssssssssss");
-  console.log(req.session.user, "qqqqqqqqqqqqqqqqq");
   knex('times')
   .insert({'solve_time': req.body.time, 'username': req.session.user})
   .then(function(response){
