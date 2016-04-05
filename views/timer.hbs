@@ -2,12 +2,14 @@
 <h1 class='page-title'>Cube Timer</h1>
 <div class='form-wrapper'>
 <h1 class='timer' id='displayedTime'>00:00:00</h1>
+<div class='controls'>
 <button id="startButton" >Start</button>
 <button id="stopButton">Stop</button>
 <button id="clearButton">Clear</button>
+</div>
 <br><br>
 <form method='POST' action="/time/add">
-<input type="submit" id='submit' name='input' value='Submit'></input>
+<input class='button' type="submit" id='submit' name='input' value='Submit'></input>
 </form>
 <div id='scores'>
 <p id='newScores'></p>
