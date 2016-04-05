@@ -1,7 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.table('users', function(table) {
-    table.renameColumn('email', 'username');
+4    table.renameColumn('email', 'username');
   })
 };
 

@@ -42,11 +42,14 @@ router.get('/times',authorizedUser, function(req, res, next) {
 });
 
 router.get('/timer', function(req, res, next) {
-  res.render('timer');
+  knex('users').where('username',req.session.user).first().then(function(records){
+    console.log(records);
+    res.render('timer', { users: records });
+  });
 });
 
 router.post('/time/add', function(req, res, next) {
-  console.log(req.body.time);
+  console.log(4);
   res.end();
 });
 
