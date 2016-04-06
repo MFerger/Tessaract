@@ -17,7 +17,6 @@ function authorizedUser(req, res, next) {
 router.get('/', function(req, res, next) {
 
   knex('users').where('username',req.session.user).first().then(function(records){
-    console.log(records);
     res.render('index', { users: records });
   });
 });
@@ -56,9 +55,16 @@ router.get('/user',function(req,res,next) {
 });
 
 router.get('/user/:id',authorizedUser, function(req, res, next) {
-  knex('users').where('id', req.params.id).then(function(records){
-    res.render('userDetail', { users: records });
-  });
+  if (req.params.id == req.session.id) {
+    knex('users').where('users.id', req.params.id)
+    .innerJoin('times', 'users.username', 'times.username')
+    .limit(5).orderBy('solve_time')
+    .then(function(records){
+      res.render('userDetail', { scores: records });
+    });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 router.post('/user/delete',authorizedUser, function(req, res, next) {

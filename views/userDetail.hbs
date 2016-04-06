@@ -1,0 +1,13 @@
+<h1>Your Best Scores</h1>
+<table>
+  <tr>
+    <th>Solve Time</th>
+    <th>Date</th>
+  </tr>
+
+{{#scores}}
+<tr>
+    <td>{{solve_time}}</td>
+    <td>{{created_at}}</td>
+</tr>
+{{/scores}}
