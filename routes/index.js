@@ -3,7 +3,6 @@ var router = express.Router();
 var knex = require('knex')(require('../knexfile')['production']);
 
 function authorizedUser(req, res, next) {
-  console.log(req.session);
 
   if (req.session.user) {
     next();
@@ -16,11 +15,7 @@ function authorizedUser(req, res, next) {
 
 
 router.get('/', function(req, res, next) {
-  // if (req.session.user) {
-  //   next(); // Logged In Page
-  // } else {
-  //   res.redirect('/'); //Not Logged In
-  // }
+
   knex('users').where('username',req.session.user).first().then(function(records){
     console.log(records);
     res.render('index', { users: records });
@@ -36,21 +31,24 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.get('/times',authorizedUser, function(req, res, next) {
-  // knex('times').top('solve_time').limit(5).then(function(records){
-  //   res.render('leaderBoard', { scores: records });
-  res.render('index');
+  knex('times').limit(5).orderBy('solve_time').then(function(records){
+    res.render('leaderBoard', { scores: records });
+  });
 });
 
 router.get('/timer', function(req, res, next) {
   knex('users').where('username',req.session.user).first().then(function(records){
-    console.log(records);
     res.render('timer', { users: records });
   });
 });
 
-router.post('/time/add', function(req, res, next) {
-  console.log(4);
-  res.end();
+router.post('/time/add',authorizedUser, function(req, res, next) {
+  knex('times')
+  .insert({'solve_time': req.body.time, 'username': req.session.user})
+  .then(function(response){
+    res.redirect('/');
+  })
+
 });
 
 router.get('/user',function(req,res,next) {
