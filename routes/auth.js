@@ -35,6 +35,7 @@ router.post('/login', function(req,res,next){
   .then(function(response){
     if(response && bcrypt.compareSync(req.body.password, response.password)){
       req.session.user = response.username;
+      req.session.id = response.id;
       res.redirect('/');
     } else {
       res.render('login', {error: 'Invalid username or password'});
